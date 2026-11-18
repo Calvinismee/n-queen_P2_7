@@ -2,16 +2,6 @@
 
 Solver N-Queens dengan algoritma **Backtracking + Bitwise Pruning** untuk 4 kasus berbeda. Semua solver dikompilasi ke WebAssembly dan dijalankan di dalam tester.
 
-## Koreksi dan batas masukan
-
-Implementasi menerima N=1 sampai 12; antarmuka tetap membatasi N=4 sampai 12. Nilai di luar rentang, koordinat ratu terkunci di luar papan, pengulangan/konflik ratu terkunci, ukuran grid yang tidak N×N, serta karakter selain `.`/`H` atau `.`/`W` ditolak sebelum akses indeks dan operasi bit. Penolakan mengembalikan daftar kosong, sehingga pemanggil tetap perlu memvalidasi masukan untuk membedakannya dari persoalan sah tanpa solusi.
-
-Kasus Walled dengan seluruh sel `W` mempunyai satu susunan optimal: papan tanpa ratu. Hasilnya adalah satu daftar posisi kosong (`{{}}`), bukan tidak mengembalikan papan (`{}`).
-
-Pada Debug run, rekaman mencakup penempatan dan langkah mundur. Baris bebas menggunakan `-1` dan dibersihkan ketika mundur agar tidak ada ratu sisa pada rekaman. Ratu terkunci tetap terlihat. Rekaman mengikuti batas kepala/ekor tester; pencarian panjang tidak menyimpan seluruh langkah.
-
-Jalankan `npm test`, `npm run test:native`, dan `npm run build` dari akar proyek. Pengujian native memakai AddressSanitizer/UndefinedBehaviorSanitizer, enumerasi permutasi terpisah untuk Pre-placed/Holes, dan enumerasi subset sel dengan pemeriksaan delapan arah untuk Walled. Konfigurasi bawaan memakai solver contoh brute force sebagai pembanding; ketika pembanding tidak selesai, hasil diberi status **Validity Only**, sehingga kelengkapan belum diklaim.
-
 ---
 
 ## Konsep Dasar: Backtracking
