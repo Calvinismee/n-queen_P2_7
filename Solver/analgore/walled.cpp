@@ -1,8 +1,9 @@
-// Solver/backtracking/walled.cpp
+// Solver/analgore/walled.cpp
 #include "nqueens.h"
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <cstdlib>
 
 namespace {
 struct Search {
@@ -54,7 +55,8 @@ struct Search {
 
         if (r == n) {
             if (cur.size() > bestN) { bestN = cur.size(); best = {cur}; NQ_SNAPSHOT(cur, "rekord: " + std::to_string(bestN)); }
-            else if (cur.size() == bestN && bestN > 0) best.push_back(cur);
+            // An all-wall board has exactly one optimal arrangement: the empty board.
+            else if (cur.size() == bestN) best.push_back(cur);
             return;
         }
 
@@ -68,15 +70,20 @@ struct Search {
             for (int c : cols) for (auto& q : cur) if (hits(q.first, q.second, r, c)) { ok = false; break; }
             if (!ok) continue;
             for (int c : cols) cur.push_back({r, c});
+            NQ_SNAPSHOT(cur, "place row " + std::to_string(r));
             dfs(r + 1, count + cols.size());
             for (size_t i = 0; i < cols.size(); ++i) cur.pop_back();
+            NQ_SNAPSHOT(cur, "backtrack row " + std::to_string(r));
         }
     }
 };
 }
 
 std::vector<std::vector<std::pair<int, int>>> solveWalled(int n, const std::vector<std::string>& grid) {
+    if (n < 1 || n > 12 || grid.size() != static_cast<size_t>(n)) return {};
+    for (const auto& row : grid)
+        if (row.size() != static_cast<size_t>(n) || row.find_first_not_of(".W") != std::string::npos) return {};
     Search s(n, grid);
     s.dfs(0, 0);
-    return s.best.empty() ? std::vector<std::vector<std::pair<int, int>>>() : s.best;
+    return s.best;
 }
