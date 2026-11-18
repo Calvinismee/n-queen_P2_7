@@ -7,10 +7,10 @@ import type { ProblemCase } from "../Board/terrain";
  * matter, and is set by `referenceSolvers` in tester.config.json.
  */
 export const DEFAULT_SOLVER: Record<ProblemCase, string> = {
-  normal: "example/bruteforce-normal",
-  preplaced: "example/bruteforce-preplaced",
-  holes: "example/bruteforce-holes",
-  walled: "example/bruteforce-walled",
+  normal: "analgore/normal",
+  preplaced: "analgore/preplaced",
+  holes: "analgore/holes",
+  walled: "analgore/walled",
 };
 
 /**
