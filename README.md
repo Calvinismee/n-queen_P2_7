@@ -1,5 +1,8 @@
 # N-Queen Algorithm Tester & Visualizer
 
+Our Solver is located at [Solver/analgore](https://github.com/Calvinismee/n-queen_P2_7/tree/main/Solver/analgore)
+-
+
 A local browser app for testing N-Queens solvers written in C++. A solver is a plain function: it gets the problem as arguments and returns every solution, like any N-Queens exercise. Solvers are compiled to WebAssembly and run in a Web Worker. The app times the function over several runs and measures its memory, checks everything it returned, and lets you browse the returned solutions and the board where something went wrong. Four example solvers come with it, one for each problem case, and you write your own.
 
 - UI: vanilla TypeScript + Vite, no UI library. Dark by default, with a light theme chosen with the sun/moon button in the header (the choice is kept in the browser). Montserrat and Noto Sans are served from `node_modules` (`@fontsource`), so the app needs no network once installed.
